@@ -2,6 +2,8 @@ from src.modelos.modelo_google import ModeloGoople
 from src.modelos.modelo_groq import ModeloGroq
 from src.modelos.modelo_local import ModeloLocal
 from src.modelos.modelo_gemma import ModeloGemma
+from src.modelos.prompt_01 import Prompt01
+from src.modelos.prompt_02 import Prompt_02
 
 import os
 from rich.console import Console
@@ -25,6 +27,8 @@ class MenuPrincipal():
         print("2. Modelo Groq API KEY")
         print("3. Modelo Local (Ollama)")
         print("4. Modelo Gemma")
+        print("5. Prompt básico")
+        print("6. Prompt template")
         print("0. Salir")
 
     def ejecutar_opcion(self):
@@ -63,6 +67,21 @@ class MenuPrincipal():
                 prompt = input("Ingrese su prompt: ")
                 respuesta = modelo_gemma.generar_respuesta(prompt)
                 print("Respuesta del modelo Gemma:")
+                #print(respuesta)
+                self.console.print(Markdown(respuesta))
+
+            elif self.opcion == "5":
+                prompt_01 = Prompt01()
+                prompt = input("Ingrese su prompt: ")
+                respuesta = prompt_01.generar_respuesta(prompt)
+                print("Respuesta del Prompt básico:")
+                #print(respuesta)
+                self.console.print(Markdown(respuesta))
+
+            elif self.opcion == "6":
+                prompt_02 = Prompt_02()
+                respuesta = prompt_02.generar_respuesta()
+                print("Respuesta del Prompt template:")
                 #print(respuesta)
                 self.console.print(Markdown(respuesta))
 
